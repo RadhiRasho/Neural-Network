@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "cppdbg",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/.out/${fileBasenameNoExtension}",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "miDebuggerPath": "/usr/bin/gdb",
+            "MIMode": "gdb",
+            "preLaunchTask": "build",
+            "internalConsoleOptions": "neverOpen"
+        }
+    ]
+}
