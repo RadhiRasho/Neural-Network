@@ -9,5 +9,7 @@
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.formatting": "default",
     "C_Cpp.autocompleteAddParentheses": true,
-    "C_Cpp.default.cStandard": "gnu99"
+    "C_Cpp.default.cStandard": "gnu99",
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.codeAnalysis.clangTidy.codeAction.formatFixes": true,
 }
