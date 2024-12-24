@@ -84,10 +84,10 @@ Softmax function is applied tot he output layer to compute probabilities, which 
 
 $$
 \Large
-\sigma(\Zeta)_i = \frac{e^{z_i}}{\sum_{j=1}^{\mathcal{K}}e^{z_j}}
+\sigma(\Zeta)_i = \frac{e^{z_i}}{\sum_{j=1}^{K}e^{z_j}}
 $$
 
-The Softmax function $\Large \sigma(\Zeta)_i$ computes the probablility distribution over $\mathcal{K}$ classes for the $i$-th element of the input vector $\Zeta$ by exponentiating each element and normalizing by the sum of all exponentiated values.
+The Softmax function $\Large \sigma(\Zeta)_i$ computes the probablility distribution over $K$ classes for the $i$-th element of the input vector $\Zeta$ by exponentiating each element and normalizing by the sum of all exponentiated values.
 
 ## Backpropagation
 
@@ -95,7 +95,16 @@ Backpropagation, or the backward pass, reverses the forward pass. It propagates 
 
 $$
 \Large
-\omega_{ij} = \omega_{ij} - \eta \times \frac{{\partial}\mathcal{L}}{{\partial}\omega_{ij}}
+\omega_{ij} = \omega_{ij} - \eta \centerdot \frac{{\partial}L}{{\partial}\omega_{ij}}
 $$
 
 $\Large \omega_{ij}$ is updated by subtractiong the product of the learning rate $\Large \eta$ and the gradient of the loss function with respect tot he weight, effectively moving the weight in the direction that minimizes the loss.
+
+### Updating Bias
+
+$$
+\Large
+b_i = b_i - \eta \centerdot \frac{{\partial}L}{{\partial}b_i}
+$$
+
+The bias term $\Large b_i$ is updated by subtracting the product of the learning rate $\Large \eta$ and the gradient of the loss function with respect to the bias, effectively adjusting the bias in the direction that minimizes the loss.
