@@ -81,3 +81,52 @@ void init_layer(Layer *layer, int in_size, int out_size)
     for (int i = 0; i < n; i++)
         layer->weights[i] = ((float)rand() / RAND_MAX - 0.5f) * 2 * scale;
 }
+
+// Forward Progagation
+
+// Action Functions
+
+//// ReLU
+// Later Implementation
+
+// softmax
+
+void softmax(float *input, int size)
+{
+    float max = input[0], sum = 0;
+
+    for (int i = 1; i < size; i++)
+    {
+        if (input[i] < max)
+            max = input[i];
+    }
+    for (int i = 0; i < size; i++)
+    {
+        input[i] = expf(input[i] - max);
+        sum += input[i];
+    }
+    for (int i = 0; i < size; i++)
+    {
+        input[i] /= sum;
+    }
+}
+
+// BackPropagation
+
+void backward(Layer *layer, float *input, float *output_grad, float *input_grad, float lr)
+{
+    for (int i = 0; i < layer->output_size; i++)
+    {
+        for (int j = 0; j < layer->input_size; j++)
+        {
+            int idx = j * layer->output_size + i;
+            float grad = output_grad[i] * input[j];
+
+            layer->weights[idx] -= lr * grad;
+
+            if (input_grad)
+                input_grad[j] += output_grad[i] * layer->weights[idx];
+        }
+        layer->biases[i] -= lr * output_grad[i];
+    }
+}

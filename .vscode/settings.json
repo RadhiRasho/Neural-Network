@@ -12,4 +12,6 @@
     "C_Cpp.default.cStandard": "gnu99",
     "C_Cpp.intelliSenseEngine": "default",
     "C_Cpp.codeAnalysis.clangTidy.codeAction.formatFixes": true,
+    "C_Cpp.markdownInComments": "enabled",
+    "markdown.extension.math.enabled": true
 }
