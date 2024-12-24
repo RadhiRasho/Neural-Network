@@ -50,7 +50,7 @@ Initializtiion happens in the `init_layer` method
 The Initialization to set the weights is as follows:
 $$
 \Large
-W \sim u \left( -\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}} \right)
+W \sim u (-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}})
 $$
 
 The weights `W` are initialized using a uniform distribution `u` with bounds based on the number of input units. This helps with proper scaling and reduces the risk of vanishing or exploding gradients. Biases are initialized to zero.
