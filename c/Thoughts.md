@@ -50,7 +50,7 @@ Initializtiion happens in the `init_layer` method
 The Initialization to set the weights is as follows:
 
 $$
-\Large
+\large
 W \sim \mathcal{u} \left(-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right)
 $$
 
