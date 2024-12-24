@@ -18,7 +18,6 @@ The output layer has 10 neurons, one for each digit (0-9).
 - Hidden Layer: Contains 256 neurons (number is by design, powers of 2 usually preferred)
 - Output Layer: Contains 10 neurons (one for each digit class, `0` to `9`)
 
-
 ## Processing Input Data
 
 MNIST Dataset contains `60,000` training images and `10,000` testing images of handwritten digits from `0` to `9`. Each image is `28 X 28` pixels grayscale.
@@ -76,7 +75,7 @@ We apply the ReLU (Rectified Linear Unit) activation function in the hidden laye
 
 $$
 \Large
-ReLU(x) = \max(0, x)
+\mathcal{ReLU}(x) = \max(0, x)
 $$
 
 ### Softmax
@@ -85,8 +84,10 @@ Softmax function is applied tot he output layer to compute probabilities, which 
 
 $$
 \Large
-\sigma(\Zeta)_i = \frac{e^{z_i}}{\sum_{j=1}^{K}e^{z_j}}
+\sigma(\Zeta)_i = \frac{e^{z_i}}{\sum_{j=1}^{\mathcal{K}}e^{z_j}}
 $$
+
+The Softmax function $\Large \sigma(\Zeta)_i$ computes the probablility distribution over $\mathcal{K}$ classes for the $i$-th element of the input vector $\Zeta$ by exponentiating each element and normalizing by the sum of all exponentiated values.
 
 ## Backpropagation
 
@@ -94,7 +95,7 @@ Backpropagation, or the backward pass, reverses the forward pass. It propagates 
 
 $$
 \Large
-\omega_{ij} = \omega_{ij} - \eta * \frac{{\partial}L}{{\partial}\omega_{ij}}
+\omega_{ij} = \omega_{ij} - \eta \times \frac{{\partial}\mathcal{L}}{{\partial}\omega_{ij}}
 $$
 
 $\Large \omega_{ij}$ is updated by subtractiong the product of the learning rate $\Large \eta$ and the gradient of the loss function with respect tot he weight, effectively moving the weight in the direction that minimizes the loss.
