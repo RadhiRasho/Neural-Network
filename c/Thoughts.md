@@ -20,7 +20,7 @@ The output layer has 10 neurons, one for each digit (0-9).
 
 ## Processing Input Data
 
-MNIST Dataset contains `60,000` training images and `10,000` testing images of handwritten digits from `0` to `9`. Each image is `28 X 28` pixels grayscale.
+MNIST Dataset contains `60,000` training images and `10,000` testing images of handwritten digits from `0` to `9`. Each image is `28 X 28` pixels gray-scale.
 
 Two Methods are used to preprocess the images into a shape that aligns with the neural networks architecture.
 
@@ -30,7 +30,7 @@ Two Methods are used to preprocess the images into a shape that aligns with the 
 ### Basic Idea
 
 - Open IDX file in binary mode
-- Reac and convert header information (number of images, rows, columns)
+- Read and convert header information (number of images, rows, columns)
 - Allocate necessary memory and read the image pixel data and labels.
 
 ## Implementing the Neural Network Structure
@@ -44,7 +44,7 @@ Two Methods are used to preprocess the images into a shape that aligns with the 
 
 All weights and biases need to be initialized at a default value, the network will later use backpropagation to learn and adjust these as necessary.
 
-Initializtiion happens in the `init_layer` method
+Initialization happens in the `init_layer` method
 
 The Initialization to set the weights is as follows:
 
@@ -65,7 +65,7 @@ Forward propagation is also used in order to calculate gradients and update the 
 
 ## Activation Functions
 
-The Activation function defined the weighteed sum of the inputs, which is then transformed into an output from a node or nodes in a layer of the network.
+The Activation function defined the weighted sum of the inputs, which is then transformed into an output from a node or nodes in a layer of the network.
 
 There are two activation function used in this implementation:
 
@@ -80,7 +80,7 @@ $$
 
 ### Softmax
 
-Softmax function is applied tot he output layer to compute probabilities, which follows the folloing function:
+Softmax function is applied tot he output layer to compute probabilities, which follows the following function:
 
 $$
 \Large
@@ -98,7 +98,7 @@ $$
 \omega_{ij} = \omega_{ij} - \eta \centerdot \frac{{\partial}L}{{\partial}\omega_{ij}}
 $$
 
-$\Large \omega_{ij}$ is updated by subtractiong the product of the learning rate $\Large \eta$ and the gradient of the loss function with respect tot he weight, effectively moving the weight in the direction that minimizes the loss.
+$\Large \omega_{ij}$ is updated by subtracting the product of the learning rate $\Large \eta$ and the gradient of the loss function with respect tot he weight, effectively moving the weight in the direction that minimizes the loss.
 
 ### Updating Bias
 
@@ -108,3 +108,27 @@ b_i = b_i - \eta \centerdot \frac{{\partial}L}{{\partial}b_i}
 $$
 
 The bias term $\Large b_i$ is updated by subtracting the product of the learning rate $\Large \eta$ and the gradient of the loss function with respect to the bias, effectively adjusting the bias in the direction that minimizes the loss.
+
+## Input Gradient Calculation
+
+$$
+\large
+\frac{{\partial}L}{{\partial}x_j} = \sum_{i=1}^n \frac{{\partial}L}{{\partial}y_i} \cdot \omega_{ij}
+$$
+
+The partial derivative of the loss function $\large L$ with respect to the input $\large x_j$ is computed as the sum of the products of the partial derivatives of the loss with respect to each output $\large y_i$ and their corresponding weights $\large \omega_{ij}$, effectively propagating the gradients backwards through the network.
+
+## Gradient Calculation For Weight Updates
+
+$$
+\large
+\frac{{\partial}L}{{\partial}\omega_{ij}} = \frac{{\partial}L}{{\partial}y_i} \cdot x_j
+$$
+
+The partial derivative of the loss function $\large L$ with respect to the weight $\large \omega_{ij}$ is calculated as the product of the partial derivative of the loss with respect to the output $\large y_i$ and the corresponding input $\large x_j$, which is used to update the weight during backpropagation.
+
+Backpropagation is essential because it calculates how much each weight and bias affects the network's error, which allows it to adjust these parameters to reduce the error in future predictions. By sending the error information backward through the network, backpropagation enables all layers to learn and improve the network's performance on the given task through iterative updates. In short, backpropagation is the key mechanism that allows neural networks to learn and make better predictions over time.
+
+## Training
+
+With forward and backward propagation now implemented, we are ready to train out neural network. Training involves calling these propagation function sin a loop to adjust the network's weights and biases. minimizing the loss and enhancing the model's ability to make accurate predictions with each pass.
